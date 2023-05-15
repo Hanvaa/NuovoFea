@@ -2,9 +2,9 @@
 
  var map;
 
-$(document).ready(function() {
+$(document).ready(async function() {
+    let busta = await fetch("https://www.openstreetmap.org/search?format=json&city=Fossano")
 
-    
     /*
     //Definisco una mappa
     map = new ol.map(
