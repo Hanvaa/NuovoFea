@@ -25,11 +25,37 @@ $(document).ready(async function() {
                 {
                 //Array di float,lo richiede(longitudine, latitudine)
                 center : ol.proj.fromLonLat(cords),//Funzione libreria che trasforma l'array di float in oggetto particolare
-                zoom:4
+                zoom:15
             }
             )
         });
+
+        aggiungiLayer(map,"../IMG/Marker.pgn");
         
 
 
 });
+
+//Creazione di un nuovo layer
+function aggiungiLayer(mappa, pathImg){
+    let layer = new ol.layer.Vector({//Vettore per orientare un oggetto
+        //il sorgente delLo strato visivo che si vuole aggiungere(es altra mappa)
+        source:new ol.source.Vector(),//Nuovo sorgente vuoto che possiamo usare dinamicamente sul js,
+        //permette di Specificare delle caratteristiche grafiche del layer 
+        style:new ol.style.Style({//Oggetto json in cui indichiamo un'icona sul layer
+            image: new ol.style.Icon({//ICONA
+                //Cordinate dell'icona/immagine rispetto alle cordinate del punto
+                anchor:[0.5, 1], //x = 0.5 y = 1
+                src: pathImg //"../IMG/Marker.pgn"//PERCORSO RISPETTO AL JS
+            })
+        })
+
+
+
+    });
+    mappa.addLayer(layer);
+}
+
+function aggiungiMarker(nome,lat,lon){
+
+}
