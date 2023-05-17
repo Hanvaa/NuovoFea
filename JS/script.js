@@ -29,6 +29,29 @@ $(document).ready(async function() {
             }
             )
         });
+        //Intercettare il click sulla mappa
+        map.on("click",function(event){
+            //evento ha una proprietà pixel
+            //forEachFeatureAtPixel: da pixel -> a maker
+            let marker = map.forEachFeatureAtPixel(evento.pixel, feature => feature);//questa funzione vede che cosa ho cliccato sulla mappa(la mappa è vista come un'immagine)
+            /* 
+                il 2 parametro  corrisponde a scrivere (feature)=>{return feature}
+                oppure
+                function (feature){
+                    return feature;
+                }
+
+                il 2 parametro (evento.pixel, funzione richiamata per ogni feature trovata) infatti la funzione iniziale si chiama FOREACHfeacture, per ogni e posso scremarle in base ai pixel o qualsiasi altro, cioè scremare significa prendere i pixel di ogni feature;
+            /* 
+            */
+
+            if(marker){//Controllo se esiste
+
+                    //MANCA UNA PARTE
+                    
+            }
+
+        });
 
         let layer = aggiungiLayer(map,"IMG/Marker.png");
         aggiungiMarker(layer,"Fossano",cords[1],cords[0]);
