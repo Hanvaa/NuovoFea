@@ -30,7 +30,8 @@ $(document).ready(async function() {
             )
         });
 
-        aggiungiLayer(map,"../IMG/Marker.pgn");
+        let layer = aggiungiLayer(map,"IMG/Marker.png");
+        aggiungiMarker(layer,"Fossano",cords[1],cords[0]);
         
 
 
@@ -54,8 +55,21 @@ function aggiungiLayer(mappa, pathImg){
 
     });
     mappa.addLayer(layer);
+    return layer;
 }
+//ciò serve quando vado sulla funzione e tengo il mouse sopra, compare una finestra in cui mi spiego i campi che devo mettere i cosa servono
+/**
+ * Agggiunge un nuovo marker in un layer
+ * @param {*} layer strato visivo in cui aggiungiamo il marker
+ * @param {*} nome  Testo da visualizzare 
+ * @param {*} lat:float  Latitudine
+ * @param {*} lon:float  Longitudine
+ */
+function aggiungiMarker(layer,nome,lat,lon){
+    let punto = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([lon,lat])));//Da qua prendo le cordinate del punto in cui voglio mettere il marker
+    let marker = new ol.Feature(punto);
+    marker.name = nome;
 
-function aggiungiMarker(nome,lat,lon){
-
+    //Inserisce nel layer scelto il marker
+    layer.getSource().addFeature(marker);
 }
